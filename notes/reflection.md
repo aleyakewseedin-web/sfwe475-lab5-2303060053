@@ -1,0 +1,7 @@
+4.Why is app/tasks/page.tsx a Server Component but TaskBoard a Client Component? (Strand 2)
+page.tsx only needs to fetch the tasks and hand them down, which the server can do with await fetchTasks(), so it needs no  browser features and stays a Server Component by default. TaskBoard uses useState and click handlers (filtering, toggling, adding tasks), which only work in the browser, so it needs "use client". 
+
+5.What did view source show on /tasks in this lab compared with your Lab 4 Vite app, and why? (Strands 2 and 3) 
+In the Next.js app, view source showed the task titles inside <h3> elements, along with the form and filter buttons, because the server fetched the tasks and rendered the HTML before sending it. In my Lab 4 Vite app it showed only an empty <div id="root"> and a script tag, because the browser builds the page after downloading JavaScript. The difference is where rendering happens: Next.js renders on the server first, while Vite renders entirely in the browser.
+6.A teammate creates a page at /Tasks/Project_Plan. Which two URL rules does it break, and what would you rename it to? (Strand 1)
+It breaks two rules: URLs should be lowercase (Tasks has a capital T) and should use hyphens instead of underscores to separate words (Project_Plan). Search engines can treat different capitalizations as different URLs, and hyphens are read as word separators while underscores are not. I would rename the route to /tasks/project-plan, which means renaming the folders to app/tasks/project-plan/.
